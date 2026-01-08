@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import athyronLogo from "@/assets/athyron-logo.png";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Solution", href: "#solution" },
-  { name: "Impact", href: "#impact" },
-  { name: "Team", href: "#team" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "Solution", href: "/solution" },
+  { name: "Impact", href: "/impact" },
+  { name: "Team", href: "/team" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,41 +32,44 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          ? "glass-nav"
           : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img src={athyronLogo} alt="Athyron" className="h-10 w-auto" />
-          <span className="text-xl font-bold tracking-tight text-foreground">
-            ATHYRON
-          </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group"
+              <Link
+                to={link.href}
+                className={`text-sm font-medium transition-colors duration-200 relative group ${
+                  location.pathname === link.href
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                }`}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </a>
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
+              </Link>
             </li>
           ))}
         </ul>
 
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm shadow-[0_4px_20px_-4px_hsl(185_100%_50%_/_0.4)] hover:shadow-[0_4px_30px_-4px_hsl(185_100%_50%_/_0.6)] transition-all duration-300"
-        >
-          Request Demo
-        </motion.a>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Link
+            to="/contact"
+            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm shadow-[0_4px_20px_-4px_hsl(207_100%_50%_/_0.4)] hover:shadow-[0_4px_30px_-4px_hsl(207_100%_50%_/_0.6)] transition-all duration-300"
+          >
+            Request Demo
+          </Link>
+        </motion.div>
 
         {/* Mobile Menu Button */}
         <button
@@ -81,28 +86,32 @@ const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border"
+          className="md:hidden absolute top-full left-0 right-0 glass-nav"
         >
           <ul className="container mx-auto px-6 py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
+                  className={`block text-lg font-medium transition-colors ${
+                    location.pathname === link.href
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary"
+                  }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="pt-4">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full text-center px-5 py-3 rounded-lg bg-primary text-primary-foreground font-semibold"
               >
                 Request Demo
-              </a>
+              </Link>
             </li>
           </ul>
         </motion.div>

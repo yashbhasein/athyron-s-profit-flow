@@ -2,11 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatbotButton from "@/components/ChatbotButton";
-import HeroSection from "@/components/HeroSection";
-import HomeROISection from "@/components/HomeROISection";
-import HomeSolutionPreview from "@/components/HomeSolutionPreview";
-import HomeImpactPreview from "@/components/HomeImpactPreview";
-import HomeTeamPreview from "@/components/HomeTeamPreview";
+import TeamSection from "@/components/TeamSection";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -14,7 +10,7 @@ const pageVariants = {
   exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
 };
 
-const Index = () => {
+const TeamPage = () => {
   return (
     <motion.div
       variants={pageVariants}
@@ -24,16 +20,8 @@ const Index = () => {
       className="min-h-screen bg-background text-foreground overflow-x-hidden"
     >
       <Navbar />
-      <main>
-        <HeroSection />
-        <div className="section-divider" />
-        <HomeROISection />
-        <div className="section-divider" />
-        <HomeSolutionPreview />
-        <div className="section-divider" />
-        <HomeImpactPreview />
-        <div className="section-divider" />
-        <HomeTeamPreview />
+      <main className="pt-20">
+        <TeamSection />
       </main>
       <Footer />
       <ChatbotButton />
@@ -41,4 +29,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default TeamPage;

@@ -1,17 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Droplets, Leaf } from "lucide-react";
-import heroMachine from "@/assets/hero-machine.png";
+import { Link } from "react-router-dom";
+import { ArrowRight, Zap, Droplets, Leaf, Play } from "lucide-react";
+import HeroGraphic from "./graphics/HeroGraphic";
 
 const HeroSection = () => {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Elements */}
-      <div className="absolute inset-0 tech-grid opacity-50" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[96px]" />
+      <div className="absolute inset-0 tech-grid opacity-30" />
+      <div className="absolute inset-0 radial-glow" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -30,41 +29,39 @@ const HeroSection = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-foreground">Promoting</span>{" "}
-              <span className="text-gradient">sustainable</span>{" "}
-              <span className="text-foreground">industrial practices</span>
+              <span className="text-foreground">Athyron's AI retrofit upgrades </span>
+              <span className="text-gradient">legacy machinery</span>{" "}
+              <span className="text-foreground">into intelligent assets.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-              Enabling MSMEs across India to optimize profitability through
-              smart retrofit solutions. Transform legacy machines into
-              intelligent, EU-compliant assets.
+              Promoting sustainable industrial practices while enabling MSMEs across India to optimize profitability.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <motion.a
-                href="#calculator"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-base shadow-[0_4px_30px_-4px_hsl(185_100%_50%_/_0.5)] hover:shadow-[0_4px_40px_-4px_hsl(185_100%_50%_/_0.7)] transition-all duration-300"
-              >
-                Calculate Your ROI
-                <ArrowRight size={18} />
-              </motion.a>
-              <motion.a
-                href="#solution"
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-base shadow-[0_4px_30px_-4px_hsl(207_100%_50%_/_0.5)] hover:shadow-[0_4px_40px_-4px_hsl(207_100%_50%_/_0.7)] transition-all duration-300"
+                >
+                  Request Demo
+                  <ArrowRight size={18} />
+                </Link>
+              </motion.div>
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-lg border border-border bg-muted/50 text-foreground font-semibold text-base hover:bg-muted hover:border-primary/50 transition-all duration-300"
               >
-                Explore Solution
-              </motion.a>
+                <Play className="w-5 h-5 text-primary" fill="currentColor" />
+                Watch Demo
+              </motion.button>
             </div>
 
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
+                <div className="p-2 rounded-lg bg-primary/10 border border-primary/30">
                   <Droplets className="w-5 h-5 text-primary" />
                 </div>
                 <div>
@@ -73,7 +70,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-success/10">
+                <div className="p-2 rounded-lg bg-success/10 border border-success/30">
                   <Zap className="w-5 h-5 text-success" />
                 </div>
                 <div>
@@ -82,7 +79,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-warning/10">
+                <div className="p-2 rounded-lg bg-warning/10 border border-warning/30">
                   <Leaf className="w-5 h-5 text-warning" />
                 </div>
                 <div>
@@ -93,49 +90,14 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Hero Image */}
+          {/* Right Content - Interactive Hero Graphic */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
-              <img
-                src={heroMachine}
-                alt="Athyron Smart Retrofit Technology"
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              
-              {/* Floating Data Cards */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute bottom-4 left-4 right-4 glass-card p-4"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Real-time pH Level</p>
-                    <p className="text-2xl font-mono font-bold text-primary">7.42</p>
-                  </div>
-                  <div className="h-12 w-px bg-border" />
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Dye Concentration</p>
-                    <p className="text-2xl font-mono font-bold text-success">98.3%</p>
-                  </div>
-                  <div className="h-12 w-px bg-border" />
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Response Time</p>
-                    <p className="text-2xl font-mono font-bold text-warning">&lt;50ms</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Glow Effect */}
-            <div className="absolute -inset-4 bg-primary/5 rounded-3xl blur-2xl -z-10" />
+            <HeroGraphic />
           </motion.div>
         </div>
       </div>

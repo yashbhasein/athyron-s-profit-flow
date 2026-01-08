@@ -8,6 +8,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import CircuitOverlay from "./graphics/CircuitOverlay";
+import industrialMachine from "@/assets/industrial-machine.jpg";
 
 const HomeROISection = () => {
   const [batchCount, setBatchCount] = useState([50]);
@@ -37,7 +39,18 @@ const HomeROISection = () => {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 tech-grid opacity-20" />
+      {/* Industrial Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{ backgroundImage: `url(${industrialMachine})` }}
+      />
+      {/* Deep Navy Overlay */}
+      <div className="absolute inset-0 bg-[#020617]/85" />
+      
+      {/* Circuit Overlay */}
+      <CircuitOverlay variant="section" />
+      
+      <div className="absolute inset-0 tech-grid opacity-15" />
       <div className="absolute inset-0 radial-glow-center" />
       
       <div className="container mx-auto px-6 relative z-10">

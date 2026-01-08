@@ -2,15 +2,28 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Zap, Droplets, Leaf, Play } from "lucide-react";
 import HeroGraphic from "./graphics/HeroGraphic";
+import CircuitOverlay from "./graphics/CircuitOverlay";
+import industrialMachine from "@/assets/industrial-machine.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Industrial Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${industrialMachine})` }}
+      />
+      {/* Deep Navy Overlay */}
+      <div className="absolute inset-0 bg-[#020617]/90" />
+      
+      {/* Glowing Circuit Lines Overlay */}
+      <CircuitOverlay variant="hero" />
+      
       {/* Background Elements */}
-      <div className="absolute inset-0 tech-grid opacity-30" />
+      <div className="absolute inset-0 tech-grid opacity-20" />
       <div className="absolute inset-0 radial-glow" />
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">

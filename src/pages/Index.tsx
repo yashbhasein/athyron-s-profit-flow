@@ -1,12 +1,32 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import ROICalculator from "@/components/ROICalculator";
+import SolutionSection from "@/components/SolutionSection";
+import ImpactSection from "@/components/ImpactSection";
+import TeamSection from "@/components/TeamSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+import ChatbotButton from "@/components/ChatbotButton";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <div className="section-divider" />
+        <ROICalculator />
+        <div className="section-divider" />
+        <SolutionSection />
+        <div className="section-divider" />
+        <ImpactSection />
+        <div className="section-divider" />
+        <TeamSection />
+        <div className="section-divider" />
+        <ContactSection />
+      </main>
+      <Footer />
+      <ChatbotButton />
     </div>
   );
 };

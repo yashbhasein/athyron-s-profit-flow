@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Activity, Cpu, Wifi, WifiOff, Clock, Shield, Wrench, Gauge, BarChart3, Globe2 } from "lucide-react";
 import localBrainImg from "@/assets/local-brain.png";
+import circuitBrain from "@/assets/circuit-brain.jpg";
+import CircuitOverlay from "./graphics/CircuitOverlay";
 
 const features = [
   {
@@ -59,10 +61,19 @@ const SolutionSection = () => {
 
   return (
     <section id="solution" className="py-24 relative overflow-hidden">
-      {/* Industrial Background Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-      <div className="absolute inset-0 tech-grid opacity-20" />
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2" />
+      {/* Industrial Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${circuitBrain})` }}
+      />
+      {/* Deep Navy Overlay */}
+      <div className="absolute inset-0 bg-[#020617]/95" />
+      
+      {/* Circuit Overlay */}
+      <CircuitOverlay variant="section" />
+      
+      <div className="absolute inset-0 tech-grid opacity-15" />
+      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] -translate-y-1/2" />
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

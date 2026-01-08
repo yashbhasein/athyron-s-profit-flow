@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Activity, Wrench, Cpu } from "lucide-react";
+import CircuitOverlay from "./graphics/CircuitOverlay";
+import circuitBrain from "@/assets/circuit-brain.jpg";
 
 const pillars = [
   {
@@ -23,8 +25,19 @@ const pillars = [
 const HomeSolutionPreview = () => {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 tech-grid opacity-20" />
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2" />
+      {/* Industrial Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+        style={{ backgroundImage: `url(${circuitBrain})` }}
+      />
+      {/* Deep Navy Overlay */}
+      <div className="absolute inset-0 bg-[#020617]/90" />
+      
+      {/* Circuit Overlay */}
+      <CircuitOverlay variant="section" />
+      
+      <div className="absolute inset-0 tech-grid opacity-15" />
+      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] -translate-y-1/2" />
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

@@ -2,11 +2,24 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Droplets, Zap, FlaskConical } from "lucide-react";
 import ResourceFlowGraphic from "./graphics/ResourceFlowGraphic";
+import CircuitOverlay from "./graphics/CircuitOverlay";
+import textileWaste from "@/assets/textile-waste.jpg";
 
 const HomeImpactPreview = () => {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 tech-grid opacity-20" />
+      {/* Industrial Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{ backgroundImage: `url(${textileWaste})` }}
+      />
+      {/* Deep Navy Overlay */}
+      <div className="absolute inset-0 bg-[#020617]/90" />
+      
+      {/* Circuit Overlay */}
+      <CircuitOverlay variant="section" />
+      
+      <div className="absolute inset-0 tech-grid opacity-15" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-destructive/5 rounded-full blur-[150px]" />
       
       <div className="container mx-auto px-6 relative z-10">

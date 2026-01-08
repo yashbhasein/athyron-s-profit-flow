@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 import { Slider } from "@/components/ui/slider";
-import { Droplets, Zap, FlaskConical, TrendingUp, QrCode, ArrowRight, Info } from "lucide-react";
+import { Droplets, Zap, FlaskConical, TrendingUp, QrCode, Info } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const HomeROISection = () => {
   const [batchCount, setBatchCount] = useState([50]);
@@ -73,28 +71,21 @@ const HomeROISection = () => {
                 <TrendingUp className="w-5 h-5 text-primary" />
                 ROI & Inefficiency Calculator
               </h3>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors">
-                    <Info className="w-3 h-3" />
-                    How is this calculated?
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="bg-card border-border">
-                  <DialogHeader>
-                    <DialogTitle>Calculation Methodology</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4 text-sm text-muted-foreground">
-                    <p>Our ROI calculation is based on industry-standard metrics from textile wet processing units:</p>
-                    <ul className="list-disc pl-4 space-y-2">
-                      <li><strong>Average Batch Value:</strong> ₹25,000 per batch (industry average)</li>
-                      <li><strong>Waste Recovery Rate:</strong> 70% of current waste can be optimized with Athyron</li>
-                      <li><strong>Resource Multipliers:</strong> Based on re-processing rates for non-RFT batches</li>
-                    </ul>
-                    <p className="text-xs italic">*Actual savings may vary based on specific operational conditions.</p>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors">
+                      <Info className="w-3 h-3" />
+                      How is this calculated?
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-sm bg-card border-border p-4">
+                    <p className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">Profit Increase</strong> = (Reduction in Water/Chemical waste [~15%]) + (Steam energy savings) + (Revenue Gain from RFT optimization). By moving from 75% to 95% Right-First-Time (RFT), we eliminate the 2x cost of re-dyeing, effectively doubling the profit margin per batch.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
 
             {/* Batch Count Slider */}
@@ -248,13 +239,6 @@ const HomeROISection = () => {
               )}
             </AnimatePresence>
 
-            <Link
-              to="/solution"
-              className="mt-6 inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-            >
-              Learn more about compliance
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </motion.div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NotFound from "./pages/NotFound";
+import { HashRouter } from "react-router-dom";
 
 const queryClient = new QueryClient();
 

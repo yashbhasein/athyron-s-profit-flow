@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const focusAreas = [
   { city: "Surat", state: "Gujarat", specialty: "Synthetic Textiles" },
@@ -21,15 +22,35 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string || null;
+    const category = formData.get('category') as string;
+    const message = formData.get('message') as string;
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({ name, email, phone, category, message });
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,6 +100,7 @@ const ContactSection = () => {
                   <div className="relative">
                     <label className="block text-sm font-medium mb-2">Name</label>
                     <Input
+                      name="name"
                       placeholder="Your name"
                       required
                       className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary relative z-10 pointer-events-auto"
@@ -88,6 +110,7 @@ const ContactSection = () => {
                   <div className="relative">
                     <label className="block text-sm font-medium mb-2">Email</label>
                     <Input
+                      name="email"
                       type="email"
                       placeholder="your@email.com"
                       required
@@ -101,6 +124,7 @@ const ContactSection = () => {
                   <div className="relative">
                     <label className="block text-sm font-medium mb-2">Phone</label>
                     <Input
+                      name="phone"
                       type="tel"
                       placeholder="+91 XXXXX XXXXX"
                       className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary relative z-10 pointer-events-auto"
@@ -109,7 +133,7 @@ const ContactSection = () => {
                   </div>
                   <div className="relative">
                     <label className="block text-sm font-medium mb-2">Category</label>
-                    <Select required>
+                    <Select name="category" required>
                       <SelectTrigger className="bg-muted/50 border-border focus:border-primary relative z-10 pointer-events-auto">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
@@ -127,6 +151,7 @@ const ContactSection = () => {
                 <div className="relative">
                   <label className="block text-sm font-medium mb-2">Message</label>
                   <Textarea
+                    name="message"
                     placeholder="Tell us about your requirements..."
                     rows={5}
                     required

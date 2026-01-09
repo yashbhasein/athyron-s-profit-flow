@@ -77,7 +77,7 @@ const HomeROISection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="glass-card border-beam p-8"
+            className="glass-card border-beam p-8 overflow-visible"
           >
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-semibold flex items-center gap-2">
@@ -93,7 +93,9 @@ const HomeROISection = () => {
                   </TooltipTrigger>
                   <TooltipContent 
                     side="bottom" 
-                    className="max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_hsl(207_100%_60%_/_0.3)]"
+                    sideOffset={8}
+                    align="end"
+                    className="z-[9999] max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_rgba(53,189,248,0.35)]"
                   >
                     <p className="text-sm leading-relaxed">
                       <strong className="text-[#35bdf8] block mb-2">Calculation Logic:</strong>

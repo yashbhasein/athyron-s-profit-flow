@@ -74,43 +74,46 @@ const ContactSection = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div>
+                  <div className="relative">
                     <label className="block text-sm font-medium mb-2">Name</label>
                     <Input
                       placeholder="Your name"
                       required
-                      className="bg-muted/50 border-border focus:border-primary"
+                      className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary relative z-10 pointer-events-auto"
+                      style={{ pointerEvents: 'auto' }}
                     />
                   </div>
-                  <div>
+                  <div className="relative">
                     <label className="block text-sm font-medium mb-2">Email</label>
                     <Input
                       type="email"
                       placeholder="your@email.com"
                       required
-                      className="bg-muted/50 border-border focus:border-primary"
+                      className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary relative z-10 pointer-events-auto"
+                      style={{ pointerEvents: 'auto' }}
                     />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div>
+                  <div className="relative">
                     <label className="block text-sm font-medium mb-2">Phone</label>
                     <Input
                       type="tel"
                       placeholder="+91 XXXXX XXXXX"
-                      className="bg-muted/50 border-border focus:border-primary"
+                      className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary relative z-10 pointer-events-auto"
+                      style={{ pointerEvents: 'auto' }}
                     />
                   </div>
-                  <div>
+                  <div className="relative">
                     <label className="block text-sm font-medium mb-2">Category</label>
                     <Select required>
-                      <SelectTrigger className="bg-muted/50 border-border focus:border-primary">
+                      <SelectTrigger className="bg-muted/50 border-border focus:border-primary relative z-10 pointer-events-auto">
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-50">
                         <SelectItem value="demo">Request Demo</SelectItem>
                         <SelectItem value="investment">Investment Inquiry</SelectItem>
                         <SelectItem value="technical">Technical Inquiry</SelectItem>
@@ -121,13 +124,14 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-medium mb-2">Message</label>
                   <Textarea
                     placeholder="Tell us about your requirements..."
                     rows={5}
                     required
-                    className="bg-muted/50 border-border focus:border-primary resize-none"
+                    className="bg-muted/50 border-border focus:border-primary focus-visible:ring-primary resize-none relative z-10 pointer-events-auto"
+                    style={{ pointerEvents: 'auto' }}
                   />
                 </div>
 

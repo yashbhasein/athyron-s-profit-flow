@@ -108,6 +108,7 @@ const HomeROISection = () => {
                   </TooltipTrigger>
 
                   <TooltipContent
+                    container={tooltipContainer}
                     side="bottom"
                     align="end"
                     sideOffset={10}

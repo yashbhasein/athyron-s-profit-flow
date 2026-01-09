@@ -84,7 +84,6 @@ const HomeROISection = () => {
                 <TrendingUp className="w-5 h-5 text-primary" />
                 ROI & Inefficiency Calculator
               </h3>
-              <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button className="text-xs text-muted-foreground hover:text-[#35bdf8] flex items-center gap-1 transition-colors">
@@ -104,7 +103,6 @@ const HomeROISection = () => {
                     </p>
                   </TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
             </div>
 
             {/* Batch Count Slider */}

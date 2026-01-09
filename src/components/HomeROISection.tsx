@@ -84,17 +84,23 @@ const HomeROISection = () => {
                 <TrendingUp className="w-5 h-5 text-primary" />
                 ROI & Inefficiency Calculator
               </h3>
-              <TooltipProvider>
+              <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors">
+                    <button className="text-xs text-muted-foreground hover:text-[#35bdf8] flex items-center gap-1 transition-colors">
                       <Info className="w-3 h-3" />
                       How is this calculated?
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent side="bottom" className="max-w-sm bg-card border-border p-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">Profit Increase</strong> = (Reduction in Water/Chemical waste [~15%]) + (Steam energy savings) + (Revenue Gain from RFT optimization). By moving from 75% to 95% Right-First-Time (RFT), we eliminate the 2x cost of re-dyeing, effectively doubling the profit margin per batch.
+                  <TooltipContent 
+                    side="bottom" 
+                    className="max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_hsl(207_100%_60%_/_0.3)]"
+                  >
+                    <p className="text-sm leading-relaxed">
+                      <strong className="text-[#35bdf8] block mb-2">Calculation Logic:</strong>
+                      <span className="text-foreground/90">
+                        Profit Increase = (15% reduction in water/chemical waste) + (Steam energy savings) + (Revenue gain from RFT optimization). By moving from 75% to 95.5% RFT, we eliminate the 2x cost of re-dyeing, effectively doubling the profit margin per batch.
+                      </span>
                     </p>
                   </TooltipContent>
                 </Tooltip>

@@ -38,13 +38,13 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <div className="mb-20">
+    <div className="mb-20 overflow-visible">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center mb-16"
       >
         <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-4">
           How It Works
@@ -56,9 +56,9 @@ const HowItWorksSection = () => {
       </motion.div>
 
       {/* Flowchart */}
-      <div className="relative">
+      <div className="relative overflow-visible py-8">
         {/* Connection Line - Desktop */}
-        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2">
+        <div className="hidden lg:block absolute top-1/2 left-[8%] right-[8%] h-1 -translate-y-1/2 z-0">
           <div className="h-full bg-gradient-to-r from-primary via-success via-warning to-accent opacity-30 rounded-full" />
           <motion.div
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-success via-warning to-accent rounded-full"
@@ -70,7 +70,7 @@ const HowItWorksSection = () => {
         </div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10 px-4">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
@@ -78,19 +78,19 @@ const HowItWorksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="relative group"
+              className="relative group pt-4"
             >
               {/* Card */}
-              <div className="glass-card p-6 text-center h-full hover:border-primary/40 transition-all duration-300">
+              <div className="glass-card p-6 pt-8 text-center h-full hover:border-primary/40 transition-all duration-300 overflow-visible">
                 {/* Step Number */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className={`inline-block px-3 py-1 rounded-full bg-${step.color}/20 border border-${step.color}/40 text-${step.color} text-xs font-bold`}>
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-20">
+                  <span className={`inline-block px-3 py-1 rounded-full bg-${step.color}/20 border border-${step.color}/40 text-${step.color} text-xs font-bold whitespace-nowrap`}>
                     STEP {step.step}
                   </span>
                 </div>
 
                 {/* Icon */}
-                <div className={`w-16 h-16 mx-auto mt-4 mb-4 rounded-2xl bg-${step.color}/10 border border-${step.color}/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_hsl(var(--${step.color})_/_0.2)]`}>
+                <div className={`w-16 h-16 mx-auto mt-2 mb-4 rounded-2xl bg-${step.color}/10 border border-${step.color}/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_hsl(var(--${step.color})_/_0.2)]`}>
                   <step.icon className={`w-8 h-8 text-${step.color}`} />
                 </div>
 
@@ -122,24 +122,6 @@ const HowItWorksSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Result Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-success/10 to-warning/10 border border-primary/20 text-center"
-        >
-          <p className="text-lg font-medium">
-            <span className="text-muted-foreground">Result: </span>
-            <span className="text-foreground">Legacy machines become </span>
-            <span className="text-gradient font-bold">intelligent assets</span>
-            <span className="text-foreground"> — achieving </span>
-            <span className="text-success font-bold">95.5% Right-First-Time</span>
-            <span className="text-foreground"> rates</span>
-          </p>
-        </motion.div>
       </div>
     </div>
   );

@@ -71,35 +71,29 @@ const HeroSection = () => {
               </motion.button>
             </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 border border-primary/30">
-                  <Droplets className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">72%</p>
-                  <p className="text-xs text-muted-foreground">Water Saved</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-success/10 border border-success/30">
-                  <Zap className="w-5 h-5 text-success" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">60%</p>
-                  <p className="text-xs text-muted-foreground">Energy Cut</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-warning/10 border border-warning/30">
-                  <Leaf className="w-5 h-5 text-warning" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">EU 2026</p>
-                  <p className="text-xs text-muted-foreground">Ready</p>
-                </div>
-              </div>
+            {/* Stat Cards Grid - Glassmorphism */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8">
+              {[
+                { value: "95.5%", label: "RFT Rate", icon: Zap },
+                { value: "<50ms", label: "Response Time", icon: Droplets },
+                { value: "15%", label: "Water Savings", icon: Droplets },
+                { value: "4hrs", label: "Install Time", icon: Leaf },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="relative p-4 rounded-xl bg-white/5 backdrop-blur-md border border-[#35bdf8]/30 hover:border-[#35bdf8]/60 transition-all duration-300 group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#35bdf8]/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative z-10 text-center">
+                    <stat.icon className="w-5 h-5 text-[#35bdf8] mx-auto mb-2" />
+                    <p className="text-2xl md:text-3xl font-bold text-[#35bdf8]">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 

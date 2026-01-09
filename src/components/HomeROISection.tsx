@@ -18,6 +18,10 @@ import {
 import CircuitOverlay from "./graphics/CircuitOverlay";
 import industrialMachine from "@/assets/industrial-machine.jpg";
 
+const tooltipContainer =
+  typeof window !== "undefined" ? document.body : undefined;
+
+
 const HomeROISection = () => {
   const [batchCount, setBatchCount] = useState([50]);
   const [nonRFTRate, setNonRFTRate] = useState([15]);
@@ -107,7 +111,11 @@ const HomeROISection = () => {
                     side="bottom"
                     align="end"
                     sideOffset={10}
-                    className="z-[9999] max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_rgba(53,189,248,0.35)]"
+                    className="z-[2147483647] max-w-md p-5
+                              bg-[#020617]/95 backdrop-blur-sm
+                              border-2 border-[#35bdf8]
+                              rounded-xl
+                              shadow-[0_0_30px_rgba(53,189,248,0.35)]"
                   >
                     <p className="text-sm leading-relaxed">
                       <strong className="text-[#35bdf8] block mb-2">

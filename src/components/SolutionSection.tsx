@@ -4,6 +4,7 @@ import { Activity, Cpu, Wifi, WifiOff, Clock, Shield, Wrench, Gauge, BarChart3, 
 import localBrainImg from "@/assets/local-brain.png";
 import circuitBrain from "@/assets/circuit-brain.jpg";
 import CircuitOverlay from "./graphics/CircuitOverlay";
+import HowItWorksSection from "./HowItWorksSection";
 
 const features = [
   {
@@ -76,6 +77,9 @@ const SolutionSection = () => {
       <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] -translate-y-1/2" />
       
       <div className="container mx-auto px-6 relative z-10">
+        {/* How It Works Section */}
+        <HowItWorksSection />
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

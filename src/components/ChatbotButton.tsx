@@ -1,112 +1,160 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MessageCircle, ChevronRight, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { X, MessageCircle, ChevronRight, Users, Play, Briefcase, Settings, ArrowLeft } from "lucide-react";
 import athyronLogo from "@/assets/athyron-logo.png";
 
-const technicalFAQs = [
-  { 
-    id: "local-brain", 
-    question: "What is the Local Brain?", 
-    answer: "The Local Brain is our edge computing module that processes sensor data locally with <50ms response times. It ensures safety-critical decisions are made instantly, even during internet outages common in rural industrial hubs."
+const menuOptions = [
+  {
+    id: "demo",
+    label: "See Athyron in Action",
+    icon: Play,
+    response: "Athyron transforms legacy textile machines into AI-powered smart systems. Our retrofit solution monitors pH, dye concentration, and temperature in real-time, achieving 95.5% Right-First-Time rates while reducing water and chemical waste by 15%. Watch your machines become intelligent assets without replacement costs or downtime.",
   },
-  { 
-    id: "machines", 
-    question: "Compatible Machines?", 
-    answer: "Athyron works with all major textile wet processing machines including jet dyeing, soft flow, jigger, and pad dyeing machines. Our non-invasive clip-on sensors require zero modifications to existing equipment."
+  {
+    id: "business",
+    label: "I want Athyron for my business",
+    icon: Briefcase,
+    response: "Great choice! Athyron is perfect for textile wet processing units looking to optimize profitability. Most customers see positive ROI within 3-6 months through reduced re-dyeing cycles and resource savings. Our clip-on sensors install in just 4 hours with zero production downtime. Ready to transform your operations?",
+    followUp: "request-demo",
   },
-  { 
-    id: "install", 
-    question: "Installation Time (4hrs)?", 
-    answer: "Yes! Our retrofit solution installs in just 4 hours with zero production downtime. Our trained technicians handle the entire process while your machines continue operating."
+  {
+    id: "specs",
+    label: "Technical Specs",
+    icon: Settings,
+    response: "Here's what powers Athyron:\n\n• **Local Brain**: Edge computing with <50ms response time\n• **Sensors**: ±0.01 pH accuracy, 0-100°C range\n• **Installation**: 4 hours, zero machine modifications\n• **Compatibility**: Jet dyeing, soft flow, jigger, pad dyeing\n• **Connectivity**: Works offline - rural-ready for Surat, Tiruppur, Ludhiana\n• **Compliance**: Auto-generates EU 2026 DPP data",
   },
-];
-
-const businessFAQs = [
-  { 
-    id: "roi", 
-    question: "ROI Timeline", 
-    answer: "Most customers see positive ROI within 3-6 months. By optimizing RFT rates from ~75% to 95%, you eliminate costly re-dyeing cycles and reduce water, energy, and chemical waste by up to 15%."
-  },
-  { 
-    id: "compliance", 
-    question: "Compliance & DPP", 
-    answer: "Athyron auto-generates Digital Product Passport (DPP) data required for EU 2026 textile regulations. We track pH levels, dye concentration, carbon footprint, and water usage for full traceability."
+  {
+    id: "founder",
+    label: "Talk to a Founder",
+    icon: Users,
+    showFounders: true,
+    response: "Meet our founding team! Each brings unique expertise to revolutionizing textile manufacturing:",
   },
 ];
 
 const founders = [
-  { name: "Aryan Prabhugaonkar", role: "CEO & Co-founder" },
-  { name: "Yash Bhasein", role: "CTO & Co-founder" },
-  { name: "Atharva Telang", role: "COO & Co-founder" },
-  { name: "Ronak Mandot", role: "CFO & Co-founder" },
+  { name: "Aryan Prabhugaonkar", role: "CEO & Co-founder", focus: "Vision & Strategy" },
+  { name: "Yash Bhasein", role: "CTO & Co-founder", focus: "AI & Technology" },
+  { name: "Atharva Telang", role: "COO & Co-founder", focus: "Operations" },
+  { name: "Ronak Mandot", role: "CFO & Co-founder", focus: "Finance & Growth" },
 ];
 
-type ViewState = "main" | "technical" | "business" | "founders" | "faq-detail";
+type ViewState = "main" | "response" | "founders";
 
 const ChatbotButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ type: "bot" | "user"; text: string }[]>([]);
+  const [showProactive, setShowProactive] = useState(false);
+  const [messages, setMessages] = useState<{ type: "bot" | "user"; text: string; isMarkdown?: boolean }[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [currentView, setCurrentView] = useState<ViewState>("main");
-  const [selectedFAQ, setSelectedFAQ] = useState<typeof technicalFAQs[0] | null>(null);
+  const [selectedOption, setSelectedOption] = useState<typeof menuOptions[0] | null>(null);
 
-  const addBotMessage = (text: string, callback?: () => void) => {
+  // Proactive pop-up after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowProactive(true);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
+  const addBotMessage = (text: string, isMarkdown?: boolean, callback?: () => void) => {
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
-      setMessages(prev => [...prev, { type: "bot", text }]);
+      setMessages(prev => [...prev, { type: "bot", text, isMarkdown }]);
       callback?.();
     }, 1500);
   };
 
   const handleOpen = () => {
     setIsOpen(true);
+    setShowProactive(false);
     if (messages.length === 0) {
       addBotMessage("Hi! I'm Athyron's assistant. How can I help you today?");
     }
   };
 
-  const handleMainOption = (option: string) => {
-    setMessages(prev => [...prev, { type: "user", text: option }]);
+  const handleOptionClick = (option: typeof menuOptions[0]) => {
+    setMessages(prev => [...prev, { type: "user", text: option.label }]);
+    setSelectedOption(option);
     
-    if (option === "Technical FAQ") {
-      addBotMessage("Here are our most common technical questions:", () => {
-        setCurrentView("technical");
-      });
-    } else if (option === "Business FAQ") {
-      addBotMessage("Here's what you need to know about ROI and compliance:", () => {
-        setCurrentView("business");
-      });
-    } else if (option === "Talk to a Founder") {
-      addBotMessage("Meet our founding team! You can book a meeting directly with any of them:", () => {
+    if (option.showFounders) {
+      addBotMessage(option.response, false, () => {
         setCurrentView("founders");
+      });
+    } else {
+      addBotMessage(option.response, true, () => {
+        setCurrentView("response");
       });
     }
   };
 
-  const handleFAQClick = (faq: typeof technicalFAQs[0]) => {
-    setMessages(prev => [...prev, { type: "user", text: faq.question }]);
-    setSelectedFAQ(faq);
-    addBotMessage(faq.answer, () => {
-      setCurrentView("faq-detail");
-    });
-  };
-
   const handleBack = () => {
     setCurrentView("main");
-    setSelectedFAQ(null);
+    setSelectedOption(null);
   };
 
   const resetChat = () => {
     setMessages([]);
     setCurrentView("main");
-    setSelectedFAQ(null);
+    setSelectedOption(null);
     setIsOpen(false);
+  };
+
+  const renderMarkdown = (text: string) => {
+    // Simple markdown rendering for bold text and line breaks
+    const parts = text.split(/(\*\*.*?\*\*|\n)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index} className="font-semibold text-primary">{part.slice(2, -2)}</strong>;
+      }
+      if (part === '\n') {
+        return <br key={index} />;
+      }
+      return part;
+    });
   };
 
   return (
     <>
+      {/* Proactive Pop-up */}
+      <AnimatePresence>
+        {showProactive && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            className="fixed bottom-24 right-6 z-50"
+          >
+            <div className="relative bg-card border border-border rounded-2xl p-4 shadow-[0_0_30px_hsl(207_100%_50%_/_0.2)] max-w-[280px]">
+              <button
+                onClick={() => setShowProactive(false)}
+                className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-muted border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <X className="w-3 h-3" />
+              </button>
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                  <img src={athyronLogo} alt="Athyron" className="w-6 h-6 object-contain" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium mb-1">How can I help you?</p>
+                  <p className="text-xs text-muted-foreground">Click to explore Athyron's AI-powered textile solutions</p>
+                </div>
+              </div>
+              <button
+                onClick={handleOpen}
+                className="w-full mt-3 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                Let's Chat
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* FAB Button */}
       <motion.button
         onClick={handleOpen}
@@ -127,7 +175,7 @@ const ChatbotButton = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-[380px] max-h-[520px] glass-card flex flex-col overflow-hidden border-beam"
+            className="fixed bottom-24 right-6 z-50 w-[380px] max-h-[520px] rounded-2xl bg-card border border-border shadow-[0_0_40px_hsl(207_100%_50%_/_0.15)] flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 border-b border-border flex items-center justify-between bg-muted/50">
@@ -136,8 +184,11 @@ const ChatbotButton = () => {
                   <img src={athyronLogo} alt="Athyron" className="w-6 h-6 object-contain" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">Intelligent FAQ</p>
-                  <p className="text-xs text-muted-foreground">Athyron Assistant</p>
+                  <p className="font-semibold text-sm">Athyron Assistant</p>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                    Online
+                  </p>
                 </div>
               </div>
               <button
@@ -149,7 +200,7 @@ const ChatbotButton = () => {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-[250px]">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-[280px]">
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
@@ -164,7 +215,7 @@ const ChatbotButton = () => {
                         : "bg-muted text-foreground rounded-bl-md"
                     }`}
                   >
-                    {message.text}
+                    {message.isMarkdown ? renderMarkdown(message.text) : message.text}
                   </div>
                 </motion.div>
               ))}
@@ -172,10 +223,11 @@ const ChatbotButton = () => {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-muted p-3 rounded-2xl rounded-bl-md flex gap-1">
-                    <div className="typing-dot" />
-                    <div className="typing-dot" />
-                    <div className="typing-dot" />
+                  <div className="bg-muted p-3 rounded-2xl rounded-bl-md flex gap-1 items-center">
+                    <span className="text-xs text-muted-foreground mr-2">Typing</span>
+                    <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
@@ -192,78 +244,44 @@ const ChatbotButton = () => {
                     exit={{ opacity: 0 }}
                     className="space-y-2"
                   >
-                    <button
-                      onClick={() => handleMainOption("Technical FAQ")}
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                    >
-                      <span>Technical FAQ</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleMainOption("Business FAQ")}
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                    >
-                      <span>Business FAQ</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleMainOption("Talk to a Founder")}
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                    >
-                      <span>Talk to a Founder</span>
-                      <Users className="w-4 h-4" />
-                    </button>
+                    {menuOptions.map((option) => (
+                      <button
+                        key={option.id}
+                        onClick={() => handleOptionClick(option)}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200 group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <option.icon className="w-4 h-4" />
+                          <span>{option.label}</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    ))}
                   </motion.div>
                 )}
 
-                {currentView === "technical" && !isTyping && (
+                {currentView === "response" && !isTyping && (
                   <motion.div
-                    key="technical"
+                    key="response"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="space-y-2"
+                    className="space-y-3"
                   >
-                    {technicalFAQs.map((faq) => (
-                      <button
-                        key={faq.id}
-                        onClick={() => handleFAQClick(faq)}
-                        className="w-full text-left px-4 py-3 rounded-lg bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                    {selectedOption?.followUp === "request-demo" && (
+                      <a
+                        href="/contact"
+                        className="block w-full text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200"
                       >
-                        {faq.question}
-                      </button>
-                    ))}
+                        Request a Demo
+                      </a>
+                    )}
                     <button
                       onClick={handleBack}
-                      className="w-full text-center px-4 py-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                     >
-                      ← Back to main menu
-                    </button>
-                  </motion.div>
-                )}
-
-                {currentView === "business" && !isTyping && (
-                  <motion.div
-                    key="business"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-2"
-                  >
-                    {businessFAQs.map((faq) => (
-                      <button
-                        key={faq.id}
-                        onClick={() => handleFAQClick(faq)}
-                        className="w-full text-left px-4 py-3 rounded-lg bg-secondary text-secondary-foreground text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                      >
-                        {faq.question}
-                      </button>
-                    ))}
-                    <button
-                      onClick={handleBack}
-                      className="w-full text-center px-4 py-2 text-xs text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      ← Back to main menu
+                      <ArrowLeft className="w-4 h-4" />
+                      Back to menu
                     </button>
                   </motion.div>
                 )}
@@ -280,7 +298,7 @@ const ChatbotButton = () => {
                       {founders.map((founder) => (
                         <div
                           key={founder.name}
-                          className="p-3 rounded-lg bg-secondary text-center"
+                          className="p-3 rounded-xl bg-secondary text-center hover:bg-secondary/80 transition-colors"
                         >
                           <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
                             <span className="text-xs font-bold text-primary">
@@ -288,46 +306,22 @@ const ChatbotButton = () => {
                             </span>
                           </div>
                           <p className="text-xs font-medium">{founder.name.split(' ')[0]}</p>
-                          <p className="text-[10px] text-muted-foreground">{founder.role.split(' ')[0]}</p>
+                          <p className="text-[10px] text-muted-foreground">{founder.focus}</p>
                         </div>
                       ))}
                     </div>
-                    <Link
-                      to="/contact"
-                      onClick={() => setIsOpen(false)}
-                      className="block w-full text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200"
+                    <a
+                      href="/contact"
+                      className="block w-full text-center px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200"
                     >
                       Book a Meeting
-                    </Link>
+                    </a>
                     <button
                       onClick={handleBack}
-                      className="w-full text-center px-4 py-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                     >
-                      ← Back to main menu
-                    </button>
-                  </motion.div>
-                )}
-
-                {currentView === "faq-detail" && !isTyping && (
-                  <motion.div
-                    key="faq-detail"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-2"
-                  >
-                    <Link
-                      to="/contact"
-                      onClick={() => setIsOpen(false)}
-                      className="block w-full text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200"
-                    >
-                      Request Demo
-                    </Link>
-                    <button
-                      onClick={handleBack}
-                      className="w-full text-center px-4 py-2 text-xs text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      ← Back to main menu
+                      <ArrowLeft className="w-3 h-3" />
+                      Back to menu
                     </button>
                   </motion.div>
                 )}

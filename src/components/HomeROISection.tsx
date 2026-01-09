@@ -96,6 +96,41 @@ const HomeROISection = () => {
                 <TrendingUp className="w-5 h-5 text-primary" />
                 ROI & Inefficiency Calculator
               </h3>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="text-xs text-muted-foreground hover:text-[#35bdf8] flex items-center gap-1 transition-colors">
+                      <Info className="w-3 h-3" />
+                      How is this calculated?
+                    </button>
+                  </TooltipTrigger>
+
+                  <TooltipContent
+                    container={tooltipContainer}
+                    side="bottom"
+                    align="end"
+                    sideOffset={10}
+                    className="z-[2147483647] max-w-md p-5
+                              bg-[#020617]/95 backdrop-blur-sm
+                              border-2 border-[#35bdf8]
+                              rounded-xl
+                              shadow-[0_0_30px_rgba(53,189,248,0.35)]"
+                  >
+                    <p className="text-sm leading-relaxed">
+                      <strong className="text-[#35bdf8] block mb-2">
+                        Calculation Logic:
+                      </strong>
+                      <span className="text-foreground/90">
+                        Profit Increase = (15% reduction in water & chemical
+                        waste) + (steam energy savings) + (revenue gain from RFT
+                        optimization). By improving Right-First-Time from ~75% to
+                        95.5%, the 2× cost of re-dyeing is eliminated, effectively
+                        doubling profit per batch.
+                      </span>
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
 
             {/* Batch Count Slider */}

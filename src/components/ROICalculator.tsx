@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
 import { Droplets, Zap, FlaskConical, TrendingUp, QrCode, HelpCircle } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 const ROICalculator = () => {
   const [batchCount, setBatchCount] = useState([50]);
   const [nonRFTRate, setNonRFTRate] = useState([15]);
@@ -130,20 +131,22 @@ const ROICalculator = () => {
               </motion.p>
               
               {/* How is this calculated? tooltip */}
-              <div className="relative inline-block mt-4 group">
-                <button className="flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors mx-auto">
-                  <HelpCircle className="w-4 h-4" />
-                  How is this calculated?
-                </button>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="p-4 rounded-xl bg-background/95 backdrop-blur-sm border-2 border-primary shadow-lg shadow-primary/20">
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      <span className="font-semibold text-foreground">Calculation Logic:</span> Profit Increase = (15% reduction in water/chemical waste) + (Steam energy savings) + (Revenue gain from RFT optimization). By moving from 75% to 95.5% RFT, we eliminate the 2x cost of re-dyeing.
-                    </p>
-                  </div>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-3 h-3 bg-background/95 border-r-2 border-b-2 border-primary rotate-45" />
-                </div>
-              </div>
+              <HoverCard openDelay={100} closeDelay={100}>
+                <HoverCardTrigger asChild>
+                  <button className="flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors mx-auto mt-4">
+                    <HelpCircle className="w-4 h-4" />
+                    How is this calculated?
+                  </button>
+                </HoverCardTrigger>
+                <HoverCardContent 
+                  className="w-80 p-4 bg-background/95 backdrop-blur-sm border-2 border-primary shadow-lg shadow-primary/20"
+                  sideOffset={8}
+                >
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="font-semibold text-foreground">Calculation Logic:</span> Profit Increase = (15% reduction in water/chemical waste) + (Steam energy savings) + (Revenue gain from RFT optimization). By moving from 75% to 95.5% RFT, we eliminate the 2x cost of re-dyeing.
+                  </p>
+                </HoverCardContent>
+              </HoverCard>
             </div>
           </motion.div>
 

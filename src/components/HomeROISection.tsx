@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
-import { Droplets, Zap, FlaskConical, TrendingUp, QrCode, Info } from "lucide-react";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Droplets,
+  Zap,
+  FlaskConical,
+  TrendingUp,
+  QrCode,
+  Info,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import CircuitOverlay from "./graphics/CircuitOverlay";
 import industrialMachine from "@/assets/industrial-machine.jpg";
 
@@ -65,7 +73,8 @@ const HomeROISection = () => {
             <span className="text-gradient">Command Center</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            See exactly how much you're losing to inefficiency — and what Athyron can recover.
+            See exactly how much you're losing to inefficiency — and what Athyron
+            can recover.
           </p>
         </motion.div>
 
@@ -84,34 +93,37 @@ const HomeROISection = () => {
                 ROI & Inefficiency Calculator
               </h3>
 
-              {/* ✅ HoverCard (no Tooltip) */}
-              <HoverCard openDelay={100}>
-                <HoverCardTrigger asChild>
-                  <button className="text-xs text-muted-foreground hover:text-[#35bdf8] flex items-center gap-1 transition-colors">
-                    <Info className="w-3 h-3" />
-                    How is this calculated?
-                  </button>
-                </HoverCardTrigger>
+              {/* ✅ WORKING TOOLTIP */}
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="text-xs text-muted-foreground hover:text-[#35bdf8] flex items-center gap-1 transition-colors">
+                      <Info className="w-3 h-3" />
+                      How is this calculated?
+                    </button>
+                  </TooltipTrigger>
 
-                <HoverCardContent
-                  side="bottom"
-                  align="end"
-                  className="z-[9999] max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_rgba(53,189,248,0.35)]"
-                >
-                  <p className="text-sm leading-relaxed">
-                    <strong className="text-[#35bdf8] block mb-2">
-                      Calculation Logic:
-                    </strong>
-                    <span className="text-foreground/90">
-                      Profit Increase = (15% reduction in water/chemical waste) +
-                      (Steam energy savings) + (Revenue gain from RFT optimization).
-                      By moving from 75% to 95.5% Right-First-Time (RFT), we eliminate
-                      the 2x cost of re-dyeing, effectively doubling the profit margin
-                      per batch.
-                    </span>
-                  </p>
-                </HoverCardContent>
-              </HoverCard>
+                  <TooltipContent
+                    side="bottom"
+                    align="end"
+                    sideOffset={10}
+                    className="z-[9999] max-w-md p-5 bg-[#020617]/95 backdrop-blur-sm border-2 border-[#35bdf8] rounded-xl shadow-[0_0_30px_rgba(53,189,248,0.35)]"
+                  >
+                    <p className="text-sm leading-relaxed">
+                      <strong className="text-[#35bdf8] block mb-2">
+                        Calculation Logic:
+                      </strong>
+                      <span className="text-foreground/90">
+                        Profit Increase = (15% reduction in water & chemical
+                        waste) + (steam energy savings) + (revenue gain from RFT
+                        optimization). By improving Right-First-Time from ~75% to
+                        95.5%, the 2× cost of re-dyeing is eliminated, effectively
+                        doubling profit per batch.
+                      </span>
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
 
             {/* Batch Count Slider */}
@@ -161,14 +173,18 @@ const HomeROISection = () => {
                 <p className="text-3xl font-bold font-mono text-primary">
                   {waterMultiplier.toFixed(1)}X
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">Water Wasted</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Water Wasted
+                </p>
               </div>
               <div className="p-4 rounded-xl bg-muted/50 border border-border text-center">
                 <Zap className="w-8 h-8 text-warning mx-auto mb-2" />
                 <p className="text-3xl font-bold font-mono text-warning">
                   {energyMultiplier.toFixed(1)}X
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">Energy Wasted</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Energy Wasted
+                </p>
               </div>
               <div className="p-4 rounded-xl bg-muted/50 border border-border text-center">
                 <FlaskConical className="w-8 h-8 text-success mx-auto mb-2" />
@@ -212,8 +228,8 @@ const HomeROISection = () => {
 
             <p className="text-muted-foreground text-sm mb-8">
               From 2026, textiles exported to the EU require a Digital Product
-              Passport (DPP) with complete traceability data. Athyron auto-generates
-              this compliance data.
+              Passport (DPP) with complete traceability data. Athyron
+              auto-generates this compliance data.
             </p>
 
             <div

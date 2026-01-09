@@ -127,9 +127,8 @@ const ROICalculator = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 className="data-counter"
               >
-                {formatCurrency(profitIncrease)}
+              {formatCurrency(profitIncrease)}
               </motion.p>
-              
             </div>
           </motion.div>
 

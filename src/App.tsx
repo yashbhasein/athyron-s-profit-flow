@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NotFound from "./pages/NotFound";
 
@@ -22,16 +22,25 @@ const pageNameMap: Record<string, string> = {
 
 const resolveImporter = (pathname: string) => {
   const parts = pathname.split("/").filter(Boolean);
+  // Prefer hostname as site selector when available (e.g. athyron.in)
+  const hostSite = typeof window !== "undefined" ? window.location.hostname.split(".")[0] : "";
   let site = "";
   let route = "";
 
-  if (parts.length === 0) {
-    route = "";
-  } else if (pageNameMap[parts[0]]) {
-    route = parts[0];
+  if (hostSite && hostSite !== "localhost" && hostSite !== "127") {
+    // Domain-based site (e.g. athyron.in). Route is the first path segment (or empty).
+    site = hostSite;
+    route = parts[0] || "";
   } else {
-    site = parts[0];
-    route = parts[1] || "";
+    // Path-based site: /siteA/solution or global routes like /solution
+    if (parts.length === 0) {
+      route = "";
+    } else if (pageNameMap[parts[0]]) {
+      route = parts[0];
+    } else {
+      site = parts[0];
+      route = parts[1] || "";
+    }
   }
 
   const pageKey = pageNameMap[route] ?? (route ? route[0].toUpperCase() + route.slice(1) : "Index");

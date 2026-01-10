@@ -2,15 +2,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
 import { Droplets, Zap, FlaskConical, TrendingUp, QrCode, Info } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import CircuitOverlay from "./graphics/CircuitOverlay";
 import industrialMachine from "@/assets/industrial-machine.jpg";
-
 const HomeROISection = () => {
   const [batchCount, setBatchCount] = useState([50]);
   const [nonRFTRate, setNonRFTRate] = useState([15]);
@@ -18,32 +12,27 @@ const HomeROISection = () => {
   const [profitIncrease, setProfitIncrease] = useState(0);
 
   // Calculate waste multipliers based on inputs
-  const waterMultiplier = 1 + (nonRFTRate[0] / 100) * 3;
-  const energyMultiplier = 1 + (nonRFTRate[0] / 100) * 2;
-  const chemicalMultiplier = 1 + (nonRFTRate[0] / 100) * 1.5;
-
+  const waterMultiplier = 1 + nonRFTRate[0] / 100 * 3;
+  const energyMultiplier = 1 + nonRFTRate[0] / 100 * 2;
+  const chemicalMultiplier = 1 + nonRFTRate[0] / 100 * 1.5;
   useEffect(() => {
     const avgBatchValue = 25000;
-    const savingsRate = (nonRFTRate[0] / 100) * 0.7;
+    const savingsRate = nonRFTRate[0] / 100 * 0.7;
     const monthlyProfit = batchCount[0] * avgBatchValue * savingsRate * 30;
     setProfitIncrease(Math.round(monthlyProfit));
   }, [batchCount, nonRFTRate]);
-
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
-      maximumFractionDigits: 0,
+      maximumFractionDigits: 0
     }).format(value);
   };
-
-  return (
-    <section className="py-24 relative overflow-hidden">
+  return <section className="py-24 relative overflow-hidden">
       {/* Industrial Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-        style={{ backgroundImage: `url(${industrialMachine})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+      backgroundImage: `url(${industrialMachine})`
+    }} />
       {/* Deep Navy Overlay */}
       <div className="absolute inset-0 bg-[#020617]/85" />
       
@@ -54,31 +43,38 @@ const HomeROISection = () => {
       <div className="absolute inset-0 radial-glow-center" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6
+      }} viewport={{
+        once: true
+      }} className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-foreground">Profit & Compliance</span>{" "}
             <span className="text-gradient">Command Center</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            See exactly how much you're losing to inefficiency — and what Athyron can recover.
-          </p>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">See exactly how much you may be losing to inefficiency — and what Athyron can recover.</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* ROI Calculator */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="glass-card border-beam p-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          x: -30
+        }} whileInView={{
+          opacity: 1,
+          x: 0
+        }} transition={{
+          duration: 0.6,
+          delay: 0.2
+        }} viewport={{
+          once: true
+        }} className="glass-card border-beam p-8">
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-xl font-semibold flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-primary" />
@@ -92,14 +88,7 @@ const HomeROISection = () => {
                 <label className="text-sm text-muted-foreground">Current Batch Count (Daily)</label>
                 <span className="text-sm font-mono font-bold text-primary">{batchCount[0]} batches</span>
               </div>
-              <Slider
-                value={batchCount}
-                onValueChange={setBatchCount}
-                min={10}
-                max={200}
-                step={5}
-                className="w-full"
-              />
+              <Slider value={batchCount} onValueChange={setBatchCount} min={10} max={200} step={5} className="w-full" />
             </div>
 
             {/* Non-RFT Rate Slider */}
@@ -108,14 +97,7 @@ const HomeROISection = () => {
                 <label className="text-sm text-muted-foreground">Non-RFT (Right-First-Time) Rate</label>
                 <span className="text-sm font-mono font-bold text-destructive">{nonRFTRate[0]}%</span>
               </div>
-              <Slider
-                value={nonRFTRate}
-                onValueChange={setNonRFTRate}
-                min={5}
-                max={40}
-                step={1}
-                className="w-full"
-              />
+              <Slider value={nonRFTRate} onValueChange={setNonRFTRate} min={5} max={40} step={1} className="w-full" />
             </div>
 
             {/* Resource Multipliers */}
@@ -142,25 +124,31 @@ const HomeROISection = () => {
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
                 Potential Monthly Profit Increase
               </p>
-              <motion.p
-                key={profitIncrease}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="data-counter"
-              >
+              <motion.p key={profitIncrease} initial={{
+              scale: 0.8,
+              opacity: 0
+            }} animate={{
+              scale: 1,
+              opacity: 1
+            }} className="data-counter">
                 {formatCurrency(profitIncrease)}
               </motion.p>
             </div>
           </motion.div>
 
           {/* EU 2026 Passport Preview */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="glass-card border-beam p-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          x: 30
+        }} whileInView={{
+          opacity: 1,
+          x: 0
+        }} transition={{
+          duration: 0.6,
+          delay: 0.4
+        }} viewport={{
+          once: true
+        }} className="glass-card border-beam p-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
               <QrCode className="w-5 h-5 text-primary" />
               EU 2026 Digital Product Passport
@@ -172,19 +160,12 @@ const HomeROISection = () => {
             </p>
 
             {/* Mock DPP Card */}
-            <div 
-              className="relative p-6 rounded-xl bg-gradient-to-br from-muted to-muted/50 border border-border cursor-pointer group"
-              onMouseEnter={() => setShowPassport(true)}
-              onMouseLeave={() => setShowPassport(false)}
-            >
+            <div className="relative p-6 rounded-xl bg-gradient-to-br from-muted to-muted/50 border border-border cursor-pointer group" onMouseEnter={() => setShowPassport(true)} onMouseLeave={() => setShowPassport(false)}>
               <div className="flex items-start gap-6">
-                <motion.div 
-                  className="w-28 h-28 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center"
-                  animate={showPassport ? { 
-                    boxShadow: "0 0 30px hsl(207 100% 50% / 0.5)",
-                    borderColor: "hsl(207 100% 50%)"
-                  } : {}}
-                >
+                <motion.div className="w-28 h-28 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center" animate={showPassport ? {
+                boxShadow: "0 0 30px hsl(207 100% 50% / 0.5)",
+                borderColor: "hsl(207 100% 50%)"
+              } : {}}>
                   <QrCode className="w-16 h-16 text-primary" />
                 </motion.div>
                 <div className="flex-1">
@@ -204,13 +185,16 @@ const HomeROISection = () => {
 
             {/* DPP Modal Preview */}
             <AnimatePresence>
-              {showPassport && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="mt-6 p-6 rounded-xl bg-muted border border-primary/30"
-                >
+              {showPassport && <motion.div initial={{
+              opacity: 0,
+              y: 10
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} exit={{
+              opacity: 0,
+              y: 10
+            }} className="mt-6 p-6 rounded-xl bg-muted border border-primary/30">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="font-semibold text-sm">Auto-Logged Compliance Data</h4>
                     <span className="text-xs text-muted-foreground">Live Preview</span>
@@ -233,15 +217,12 @@ const HomeROISection = () => {
                       <span className="font-mono text-sm text-primary">45L/batch</span>
                     </div>
                   </div>
-                </motion.div>
-              )}
+                </motion.div>}
             </AnimatePresence>
 
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HomeROISection;

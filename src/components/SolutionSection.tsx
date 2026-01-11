@@ -5,68 +5,56 @@ import localBrainImg from "@/assets/local-brain.png";
 import circuitBrain from "@/assets/circuit-brain.jpg";
 import CircuitOverlay from "./graphics/CircuitOverlay";
 import HowItWorksSection from "./HowItWorksSection";
-
-const features = [
-  {
-    icon: Activity,
-    title: "High-Precision Probes",
-    description: "Real-time pH, dye concentration, and temperature monitoring.",
-    deepDetail: "Detailed visibility into dye bath exhaustion rates. Our probes achieve ±0.01 pH accuracy across 0-100°C range with chemical-resistant construction for harsh industrial environments.",
-    specs: ["±0.01 pH Accuracy", "0-100°C Range", "Chemical Resistant"],
-    color: "primary",
-  },
-  {
-    icon: BarChart3,
-    title: "AI Dynamic Control",
-    description: "Intelligent algorithms replace static timers for precision.",
-    deepDetail: "Our AI learns your machine's behavior patterns and dynamically adjusts parameters in real-time, replacing fixed timer-based operations with adaptive control curves.",
-    specs: ["Adaptive Learning", "Real-time Adjustment", "Pattern Recognition"],
-    color: "success",
-  },
-  {
-    icon: Gauge,
-    title: "RFT Optimization",
-    description: "Fewer defects, higher Right-First-Time rates.",
-    deepDetail: "A visual funnel showing fewer defects leading to higher RFT rates. By optimizing from 75% to 95% RFT, we eliminate costly re-dyeing cycles that waste resources.",
-    specs: ["75%→95% RFT", "Defect Prevention", "Quality Assurance"],
-    color: "warning",
-  },
-  {
-    icon: Wrench,
-    title: 'The "Clip-On" Advantage',
-    description: "Zero production downtime with 4-hour installation.",
-    deepDetail: "A split-image comparing a 4-hour install vs. weeks of downtime. Our non-invasive sensors clip directly onto existing pipes and tanks without modifications.",
-    specs: ["4-Hour Install", "No Machine Mods", "Universal Fit"],
-    color: "accent",
-  },
-  {
-    icon: Globe2,
-    title: "Global Compliance",
-    description: "Auto-generate EU 2026 Digital Product Passport data.",
-    deepDetail: "Icons of green certifications and a passport. Athyron automatically logs pH, dye concentration, carbon footprint, and water usage for complete traceability.",
-    specs: ["EU DPP Ready", "Carbon Tracking", "Full Traceability"],
-    color: "primary",
-  },
-  {
-    icon: Cpu,
-    title: 'Offline-First "Local Brain"',
-    description: "Edge Logic ensures <50ms response for safety-critical decisions.",
-    deepDetail: "Safety-critical decisions made on-site to prevent batch ruins during power/internet flux. The Local Brain processes all sensor data locally, ensuring uninterrupted operation.",
-    specs: ["<50ms Response", "Edge Computing", "Zero Downtime"],
-    color: "warning",
-  },
-];
-
+const features = [{
+  icon: Activity,
+  title: "High-Precision Probes",
+  description: "Real-time pH, dye concentration, and temperature monitoring.",
+  deepDetail: "Detailed visibility into dye bath exhaustion rates. Our probes achieve ±0.01 pH accuracy across 0-100°C range with chemical-resistant construction for harsh industrial environments.",
+  specs: ["±0.01 pH Accuracy", "0-100°C Range", "Chemical Resistant"],
+  color: "primary"
+}, {
+  icon: BarChart3,
+  title: "AI Dynamic Control",
+  description: "Intelligent algorithms replace static timers for precision.",
+  deepDetail: "Our AI learns your machine's behavior patterns and dynamically adjusts parameters in real-time, replacing fixed timer-based operations with adaptive control curves.",
+  specs: ["Adaptive Learning", "Real-time Adjustment", "Pattern Recognition"],
+  color: "success"
+}, {
+  icon: Gauge,
+  title: "RFT Optimization",
+  description: "Fewer defects, higher Right-First-Time rates.",
+  deepDetail: "A visual funnel showing fewer defects leading to higher RFT rates. By optimizing from 75% to 95% RFT, we eliminate costly re-dyeing cycles that waste resources.",
+  specs: ["75%→95% RFT", "Defect Prevention", "Quality Assurance"],
+  color: "warning"
+}, {
+  icon: Wrench,
+  title: 'The "Clip-On" Advantage',
+  description: "Zero production downtime with 4-hour installation.",
+  deepDetail: "A split-image comparing a 4-hour install vs. weeks of downtime. Our non-invasive sensors clip directly onto existing pipes and tanks without modifications.",
+  specs: ["4-Hour Install", "No Machine Mods", "Universal Fit"],
+  color: "accent"
+}, {
+  icon: Globe2,
+  title: "Global Compliance",
+  description: "Auto-generate EU 2026 Digital Product Passport data.",
+  deepDetail: "Icons of green certifications and a passport. Athyron automatically logs pH, dye concentration, carbon footprint, and water usage for complete traceability.",
+  specs: ["EU DPP Ready", "Carbon Tracking", "Full Traceability"],
+  color: "primary"
+}, {
+  icon: Cpu,
+  title: 'Offline-First "Local Brain"',
+  description: "Edge Logic ensures <50ms response for safety-critical decisions.",
+  deepDetail: "Safety-critical decisions made on-site to prevent batch ruins during power/internet flux. The Local Brain processes all sensor data locally, ensuring uninterrupted operation.",
+  specs: ["<50ms Response", "Edge Computing", "Zero Downtime"],
+  color: "warning"
+}];
 const SolutionSection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  return (
-    <section id="solution" className="py-24 relative overflow-hidden">
+  return <section id="solution" className="py-24 relative overflow-hidden">
       {/* Industrial Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${circuitBrain})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+      backgroundImage: `url(${circuitBrain})`
+    }} />
       {/* Deep Navy Overlay */}
       <div className="absolute inset-0 bg-[#020617]/95" />
       
@@ -80,13 +68,17 @@ const SolutionSection = () => {
         {/* How It Works Section */}
         <HowItWorksSection />
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6
+      }} viewport={{
+        once: true
+      }} className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-4">
             The Brain Transplant
           </span>
@@ -102,18 +94,20 @@ const SolutionSection = () => {
 
         {/* 6 Pillars - Hover Expansion Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-              className="relative glass-card overflow-hidden group cursor-pointer transition-all duration-500 hover:border-primary/30"
-              style={{ minHeight: hoveredCard === index ? '320px' : '220px' }}
-            >
+          {features.map((feature, index) => <motion.div key={feature.title} initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.5,
+          delay: index * 0.1
+        }} viewport={{
+          once: true
+        }} onMouseEnter={() => setHoveredCard(index)} onMouseLeave={() => setHoveredCard(null)} className="relative glass-card overflow-hidden group cursor-pointer transition-all duration-500 hover:border-primary/30" style={{
+          minHeight: hoveredCard === index ? '320px' : '220px'
+        }}>
               <div className="p-6">
                 <div className={`w-12 h-12 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className={`w-6 h-6 text-${feature.color}`} />
@@ -121,63 +115,60 @@ const SolutionSection = () => {
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 
                 <AnimatePresence mode="wait">
-                  {hoveredCard === index ? (
-                    <motion.div
-                      key="detail"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                  {hoveredCard === index ? <motion.div key="detail" initial={{
+                opacity: 0,
+                y: 10
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} exit={{
+                opacity: 0,
+                y: -10
+              }} transition={{
+                duration: 0.3
+              }}>
                       <p className="text-sm text-muted-foreground mb-4">{feature.deepDetail}</p>
                       <div className="flex flex-wrap gap-2">
-                        {feature.specs.map((spec) => (
-                          <span
-                            key={spec}
-                            className="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-xs font-mono text-primary"
-                          >
+                        {feature.specs.map(spec => <span key={spec} className="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-xs font-mono text-primary">
                             {spec}
-                          </span>
-                        ))}
+                          </span>)}
                       </div>
-                    </motion.div>
-                  ) : (
-                    <motion.p
-                      key="summary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="text-sm text-muted-foreground"
-                    >
+                    </motion.div> : <motion.p key="summary" initial={{
+                opacity: 0
+              }} animate={{
+                opacity: 1
+              }} exit={{
+                opacity: 0
+              }} className="text-sm text-muted-foreground">
                       {feature.description}
-                    </motion.p>
-                  )}
+                    </motion.p>}
                 </AnimatePresence>
               </div>
               
               {/* Hover glow effect */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.div>
-          ))}
+            </motion.div>)}
         </div>
 
         {/* Edge Computing Diagram with Local Brain Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="glass-card p-8 md:p-12 relative overflow-hidden"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6,
+        delay: 0.4
+      }} viewport={{
+        once: true
+      }} className="glass-card p-8 md:p-12 relative overflow-hidden">
           {/* Background image overlay */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: `url(${localBrainImg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
+          <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: `url(${localBrainImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }} />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background" />
           
           <div className="relative z-10">
@@ -221,22 +212,20 @@ const SolutionSection = () => {
                   <Clock className="w-10 h-10 text-success" />
                 </div>
                 <h4 className="font-semibold mb-2">&lt;50ms Response</h4>
-                <p className="text-sm text-muted-foreground">Safety-critical decisions made instantly at the edge</p>
+                <p className="text-sm text-muted-foreground">Safety-critical decisions made instantly 
+on the go.</p>
               </div>
             </div>
 
             {/* Key Point */}
             <div className="mt-10 p-6 rounded-xl bg-muted/50 border border-border text-center">
-              <p className="text-sm text-muted-foreground">
-                <span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
+              <p className="text-sm text-muted-foreground">Rural-Ready: Our Local Brain ensures your machines stay smart even during internet blackouts common in industrial hubs.<span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
                 stay smart even during internet blackouts common in industrial hubs like Surat, Tiruppur, and Ludhiana.
               </p>
             </div>
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SolutionSection;

@@ -173,7 +173,7 @@ const SolutionSection = () => {
           
           <div className="relative z-10">
             <div className="text-center mb-10">
-              <h3 className="text-2xl font-bold mb-2">Edge-First Architecture</h3>
+              <h3 className="text-2xl font-bold mb-2">Offline-First Architecture</h3>
               <p className="text-muted-foreground">
                 Smart decisions happen locally — internet blackouts won't stop your operations
               </p>
@@ -219,7 +219,7 @@ on the go.</p>
 
             {/* Key Point */}
             <div className="mt-10 p-6 rounded-xl bg-muted/50 border border-border text-center">
-              <p className="text-sm text-muted-foreground">Rural-Ready: Our Local Brain ensures your machines stay smart even during internet blackouts common in industrial hubs.<span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
+              <p className="text-sm text-muted-foreground">Rural-Ready: Our Local Brain ensures your machines stay smart even during internet blackouts common in industrial hubs across the country.<span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
                 stay smart even during internet blackouts common in industrial hubs like Surat, Tiruppur, and Ludhiana.
               </p>
             </div>

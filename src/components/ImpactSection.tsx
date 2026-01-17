@@ -4,21 +4,21 @@ import { Droplets, Flame, Factory, TrendingDown, ArrowRight } from "lucide-react
 const crisisStats = [
   {
     icon: Droplets,
-    value: "72%",
+    value: "70-80%",
     label: "Water Waste",
-    description: "in wet processing",
+    description: "(as effluent)",
     color: "destructive",
   },
   {
     icon: Flame,
-    value: "60%",
+    value: "10–50%",
     label: "Thermal Energy Waste",
-    description: "in heating cycles",
+    description: "(unfixed/discharged)",
     color: "warning",
   },
   {
     icon: Factory,
-    value: "1.2M",
+    value: ">5M",
     label: "MSMEs Affected",
     description: "across textile clusters",
     color: "muted-foreground",
@@ -27,28 +27,16 @@ const crisisStats = [
 
 const athyronDelta = [
   {
-    before: "72%",
-    after: "18%",
+    before: "70-80%",
+    after: "55-65%",
     label: "Water Waste",
-    savings: "54% Reduction",
-  },
-  {
-    before: "60%",
-    after: "15%",
-    label: "Energy Waste",
-    savings: "45% Reduction",
-  },
-  {
-    before: "40%",
-    after: "8%",
-    label: "Chemical Waste",
-    savings: "32% Reduction",
+    savings: "15% Reduction",
   },
   {
     before: "25%",
-    after: "3%",
+    after: "5%",
     label: "Non-RFT Rate",
-    savings: "22% Improvement",
+    savings: "20% Improvement",
   },
 ];
 
@@ -114,7 +102,7 @@ const ImpactSection = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {athyronDelta.map((item, index) => (
               <motion.div
                 key={item.label}
@@ -145,24 +133,6 @@ const ImpactSection = () => {
             ))}
           </div>
 
-          {/* Market Size */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">TAM</p>
-              <p className="text-3xl font-bold text-foreground">$11B</p>
-              <p className="text-sm text-muted-foreground">Indian Textile Market</p>
-            </div>
-            <div className="p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">SAM</p>
-              <p className="text-3xl font-bold text-foreground">$3B</p>
-              <p className="text-sm text-muted-foreground">Export-Ready Units</p>
-            </div>
-            <div className="p-6 rounded-xl bg-primary/10 border border-primary/30 text-center">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">SOM</p>
-              <p className="text-3xl font-bold text-primary">$450M</p>
-              <p className="text-sm text-muted-foreground">Key Cluster Focus</p>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

@@ -62,8 +62,8 @@ const HomeImpactPreview = () => {
               <div className="flex items-center gap-4">
                 <Droplets className="w-10 h-10 text-destructive" />
                 <div>
-                  <p className="text-4xl font-bold font-mono text-destructive">72%</p>
-                  <p className="text-muted-foreground">Water Waste in wet processing</p>
+                  <p className="text-3xl font-bold font-mono text-destructive">70-80%</p>
+                  <p className="text-muted-foreground">Water Waste (as effluent)</p>
                 </div>
               </div>
             </div>
@@ -71,8 +71,8 @@ const HomeImpactPreview = () => {
               <div className="flex items-center gap-4">
                 <Zap className="w-10 h-10 text-warning" />
                 <div>
-                  <p className="text-4xl font-bold font-mono text-warning">60%</p>
-                  <p className="text-muted-foreground">Thermal Energy Waste in heating cycles</p>
+                  <p className="text-3xl font-bold font-mono text-warning">10–50%</p>
+                  <p className="text-muted-foreground">Thermal Energy Waste (unfixed/discharged)</p>
                 </div>
               </div>
             </div>
@@ -80,8 +80,8 @@ const HomeImpactPreview = () => {
               <div className="flex items-center gap-4">
                 <FlaskConical className="w-10 h-10 text-success" />
                 <div>
-                  <p className="text-4xl font-bold font-mono text-success">40%</p>
-                  <p className="text-muted-foreground">Chemical Waste from re-processing</p>
+                  <p className="text-3xl font-bold font-mono text-success">40–60%</p>
+                  <p className="text-muted-foreground">Chemical Waste (efficiency gap vs. modern tech)</p>
                 </div>
               </div>
             </div>

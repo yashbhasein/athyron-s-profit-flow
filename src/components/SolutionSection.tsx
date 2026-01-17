@@ -9,8 +9,8 @@ const features = [{
   icon: Activity,
   title: "High-Precision Probes",
   description: "Real-time pH, dye concentration, and temperature monitoring.",
-  deepDetail: "Detailed visibility into dye bath exhaustion rates. Our probes achieve ±0.01 pH accuracy across 0-100°C range with chemical-resistant construction for harsh industrial environments.",
-  specs: ["±0.01 pH Accuracy", "0-100°C Range", "Chemical Resistant"],
+  deepDetail: "Detailed visibility into the factory's dyeing process. Our probes achieve remarkable pH accuracy across a wide temperature range with chemical-resistant construction for harsh industrial environments.",
+  specs: ["High pH Accuracy", "Wide Temp Range", "Chemical Resistant"],
   color: "primary"
 }, {
   icon: BarChart3,
@@ -23,21 +23,21 @@ const features = [{
   icon: Gauge,
   title: "RFT Optimization",
   description: "Fewer defects, higher Right-First-Time rates.",
-  deepDetail: "A visual funnel showing fewer defects leading to higher RFT rates. By optimizing from 75% to 95% RFT, we eliminate costly re-dyeing cycles that waste resources.",
-  specs: ["75%→95% RFT", "Defect Prevention", "Quality Assurance"],
+  deepDetail: "Fewer defects lead to higher RFT rates. By optimizing from 75% to upto 95.5% RFT, we eliminate costly re-dyeing cycles that waste resources.",
+  specs: ["75%→95.5% RFT", "Defect Prevention", "Quality Assurance"],
   color: "warning"
 }, {
   icon: Wrench,
   title: 'The "Clip-On" Advantage',
   description: "Zero production downtime with 4-hour installation.",
-  deepDetail: "A split-image comparing a 4-hour install vs. weeks of downtime. Our non-invasive sensors clip directly onto existing pipes and tanks without modifications.",
+  deepDetail: "It becomes a 4-hour install to avoid weeks of downtime. Our non-invasive sensors clip directly onto existing pipes and tanks without modifications.",
   specs: ["4-Hour Install", "No Machine Mods", "Universal Fit"],
   color: "accent"
 }, {
   icon: Globe2,
   title: "Global Compliance",
   description: "Auto-generate EU 2026 Digital Product Passport data.",
-  deepDetail: "Icons of green certifications and a passport. Athyron automatically logs pH, dye concentration, carbon footprint, and water usage for complete traceability.",
+  deepDetail: "Essential for green certifications and a passport. Athyron automatically logs pH, dye concentration, carbon footprint, and water usage for complete traceability.",
   specs: ["EU DPP Ready", "Carbon Tracking", "Full Traceability"],
   color: "primary"
 }, {

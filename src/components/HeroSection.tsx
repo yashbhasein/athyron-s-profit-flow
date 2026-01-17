@@ -63,14 +63,7 @@ const HeroSection = () => {
                   <ArrowRight size={18} />
                 </Link>
               </motion.div>
-              <motion.button whileHover={{
-              scale: 1.05
-            }} whileTap={{
-              scale: 0.95
-            }} className="inline-flex items-center gap-2 px-7 py-4 rounded-lg border border-border bg-muted/50 text-foreground font-semibold text-base hover:bg-muted hover:border-primary/50 transition-all duration-300">
-                <Play className="w-5 h-5 text-primary" fill="currentColor" />
-                Watch Demo
-              </motion.button>
+              
             </div>
 
             {/* Stat Cards Grid - Glassmorphism */}

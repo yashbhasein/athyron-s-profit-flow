@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Send, CheckCircle } from "lucide-react";
+import { MapPin, Send, CheckCircle, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -184,13 +184,23 @@ const ContactSection = () => {
             <div className="glass-card p-8">
               <h3 className="text-xl font-semibold mb-4">Quick Connect</h3>
               <div className="space-y-4">
-                <a href="mailto:hello@athyron.com" className="block p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all duration-300">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Email</p>
-                  <p className="text-foreground font-medium">hello@athyron.com</p>
+                <a href="https://www.instagram.com/athyron.in/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Instagram className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Instagram</p>
+                    <p className="text-foreground font-medium">@athyron.in</p>
+                  </div>
                 </a>
-                <a href="tel:+919876543210" className="block p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all duration-300">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Phone</p>
-                  <p className="text-foreground font-medium">+91 98765 43210</p>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Youtube className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">YouTube</p>
+                    <p className="text-foreground font-medium">Athyron</p>
+                  </div>
                 </a>
               </div>
             </div>

@@ -11,7 +11,7 @@ const steps = [{
   icon: Wifi,
   step: "02",
   title: "Connect",
-  description: "Probes link to the Edge-AI 'Local Brain'",
+  description: "Probes link to Athyron's AI 'Local Brain'",
   detail: "Secure wireless connection with offline-first architecture",
   color: "success"
 }, {
@@ -19,14 +19,14 @@ const steps = [{
   step: "03",
   title: "Detect",
   description: "Real-time monitoring of pH, Dye, and Temperature",
-  detail: "±0.01 pH accuracy with continuous data streaming",
+  detail: "remarkable accuracy with continuous data streaming",
   color: "warning"
 }, {
   icon: Cpu,
   step: "04",
   title: "Optimize",
-  description: "AI adjusts parameters on the fly to hit 95.5% RFT",
-  detail: "Dynamic control replaces static timers for precision dyeing",
+  description: "AI adjusts parameters on the fly to hit upto 95% RFT",
+  detail: "Dynamic control replaces static timers for precision dyeing and processing",
   color: "accent"
 }];
 const HowItWorksSection = () => {

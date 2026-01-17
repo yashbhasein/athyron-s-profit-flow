@@ -1,33 +1,34 @@
 import { motion } from "framer-motion";
 import { Linkedin, Mail } from "lucide-react";
+import aryanPhoto from "@/assets/aryan-photo.png";
+import yashPhoto from "@/assets/yash-photo.jpeg";
+import atharvaPhoto from "@/assets/atharva-photo.png";
+import ronakPhoto from "@/assets/ronak-photo.png";
+
 const founders = [{
   name: "Aryan Prabhugaonkar",
-  role: "Co-Founder & CEO",
-  bio: "Leading vision and strategy with deep expertise in industrial IoT and manufacturing technology.",
-  linkedin: "#",
-  email: "aryan@athyron.com",
-  initials: "AP"
+  role: "Co-Founder",
+  linkedin: null,
+  email: "aryanprabhu.777@gmail.com",
+  image: aryanPhoto
 }, {
   name: "Yash Bhasein",
-  role: "Co-Founder & CTO",
-  bio: "Architecting the edge-first platform with expertise in embedded systems and real-time computing.",
-  linkedin: "#",
-  email: "yash@athyron.com",
-  initials: "YB"
+  role: "Co-Founder",
+  linkedin: "https://www.linkedin.com/in/yash-bhasein/",
+  email: "yash.bhasein07@gmail.com",
+  image: yashPhoto
 }, {
   name: "Atharva Telang",
-  role: "Co-Founder & COO",
-  bio: "Driving operations and partnerships across textile clusters in Surat, Tiruppur, and Ludhiana.",
-  linkedin: "#",
-  email: "atharva@athyron.com",
-  initials: "AT"
+  role: "Co-Founder",
+  linkedin: "https://www.linkedin.com/in/atharva-telang-6a2102375/",
+  email: "f20250772@pilani.bits-pilani.ac.in",
+  image: atharvaPhoto
 }, {
   name: "Ronak Mandot",
-  role: "Co-Founder & CPO",
-  bio: "Shaping product experience with a focus on factory-floor usability and data visualization.",
-  linkedin: "#",
-  email: "ronak@athyron.com",
-  initials: "RM"
+  role: "Co-Founder",
+  linkedin: null,
+  email: "ronakmandot1234@gmail.com",
+  image: ronakPhoto
 }];
 const TeamSection = () => {
   return <section id="team" className="py-24 relative overflow-hidden">
@@ -67,19 +68,20 @@ const TeamSection = () => {
           once: true
         }} className="glass-card p-6 text-center group hover:border-primary/30 transition-all duration-500">
               {/* Avatar */}
-              <div className="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300">
-                <span className="text-2xl font-bold text-primary">{founder.initials}</span>
+              <div className="w-24 h-24 mx-auto rounded-2xl overflow-hidden border border-primary/30 mb-6 group-hover:scale-105 transition-transform duration-300">
+                <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
               </div>
 
               <h3 className="text-lg font-semibold mb-1">{founder.name}</h3>
-              <p className="text-sm text-primary font-medium mb-4">{founder.role}</p>
-              <p className="text-sm text-muted-foreground mb-6">{founder.bio}</p>
+              <p className="text-sm text-primary font-medium mb-6">{founder.role}</p>
 
               {/* Social Links */}
               <div className="flex items-center justify-center gap-3">
-                <a href={founder.linkedin} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-5 h-5" />
-                </a>
+                {founder.linkedin && (
+                  <a href={founder.linkedin} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
                 <a href={`mailto:${founder.email}`} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200">
                   <Mail className="w-5 h-5" />
                 </a>

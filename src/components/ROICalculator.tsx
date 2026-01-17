@@ -17,8 +17,8 @@ const ROICalculator = () => {
 
   useEffect(() => {
     // Calculate potential monthly profit increase
-    const avgBatchValue = 25000; // INR per batch
-    const savingsRate = (nonRFTRate[0] / 100) * 0.7; // 70% of waste can be saved
+    const avgBatchValue = 10000; // INR per batch
+    const savingsRate = (nonRFTRate[0] / 100) * 0.2; // 20% of waste can be saved
     const monthlyProfit = batchCount[0] * avgBatchValue * savingsRate * 30;
     setProfitIncrease(Math.round(monthlyProfit));
   }, [batchCount, nonRFTRate]);

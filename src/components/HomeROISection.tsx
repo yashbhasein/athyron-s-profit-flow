@@ -16,8 +16,8 @@ const HomeROISection = () => {
   const energyMultiplier = 1 + nonRFTRate[0] / 100 * 2;
   const chemicalMultiplier = 1 + nonRFTRate[0] / 100 * 1.5;
   useEffect(() => {
-    const avgBatchValue = 25000;
-    const savingsRate = nonRFTRate[0] / 100 * 0.7;
+    const avgBatchValue = 10000;
+    const savingsRate = nonRFTRate[0] / 100 * 0.2; // 20% of waste can be saved
     const monthlyProfit = batchCount[0] * avgBatchValue * savingsRate * 30;
     setProfitIncrease(Math.round(monthlyProfit));
   }, [batchCount, nonRFTRate]);

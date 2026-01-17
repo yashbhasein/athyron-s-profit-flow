@@ -6,7 +6,7 @@ import circuitBrain from "@/assets/circuit-brain.jpg";
 const pillars = [{
   icon: Activity,
   title: "High-Precision Probes",
-  description: "Real-time pH, dye concentration, and temperature monitoring with ±0.01 accuracy."
+  description: "Real-time pH, dye concentration, and temperature monitoring with remarkable accuracy."
 }, {
   icon: Wrench,
   title: 'Non-Invasive "Clip-On" Tech',

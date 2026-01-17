@@ -76,13 +76,13 @@ const TeamSection = () => {
               <p className="text-sm text-primary font-medium mb-6">{founder.role}</p>
 
               {/* Social Links */}
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-3 relative z-20">
                 {founder.linkedin && (
-                  <a href={founder.linkedin} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200" target="_blank" rel="noopener noreferrer">
+                  <a href={founder.linkedin} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="w-5 h-5" />
                   </a>
                 )}
-                <a href={`mailto:${founder.email}`} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200">
+                <a href={`mailto:${founder.email}`} className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer">
                   <Mail className="w-5 h-5" />
                 </a>
               </div>

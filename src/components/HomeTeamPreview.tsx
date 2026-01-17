@@ -4,26 +4,31 @@ import { ArrowRight, Linkedin, Mail } from "lucide-react";
 import CircuitOverlay from "./graphics/CircuitOverlay";
 import industrialMachine from "@/assets/industrial-machine.jpg";
 
+import aryanPhoto from "@/assets/aryan-photo.png";
+import yashPhoto from "@/assets/yash-photo.jpeg";
+import atharvaPhoto from "@/assets/atharva-photo.png";
+import ronakPhoto from "@/assets/ronak-photo.png";
+
 const founders = [
   {
     name: "Aryan Prabhugaonkar",
-    role: "Co-Founder & CEO",
-    initials: "AP",
+    role: "Co-Founder",
+    image: aryanPhoto,
   },
   {
     name: "Yash Bhasein",
-    role: "Co-Founder & CTO",
-    initials: "YB",
+    role: "Co-Founder",
+    image: yashPhoto,
   },
   {
     name: "Atharva Telang",
-    role: "Co-Founder & COO",
-    initials: "AT",
+    role: "Co-Founder",
+    image: atharvaPhoto,
   },
   {
     name: "Ronak Mandot",
-    role: "Co-Founder & CPO",
-    initials: "RM",
+    role: "Co-Founder",
+    image: ronakPhoto,
   },
 ];
 
@@ -72,8 +77,8 @@ const HomeTeamPreview = () => {
               className="glass-card p-6 text-center group hover:border-primary/30 transition-all duration-500"
             >
               {/* Avatar */}
-              <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
-                <span className="text-xl font-bold text-primary">{founder.initials}</span>
+              <div className="w-20 h-20 mx-auto rounded-2xl overflow-hidden border border-primary/30 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
               </div>
 
               <h3 className="text-base font-semibold mb-1">{founder.name}</h3>

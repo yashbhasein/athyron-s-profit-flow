@@ -219,7 +219,7 @@ on the go.</p>
 
             {/* Key Point */}
             <div className="mt-10 p-6 rounded-xl bg-muted/50 border border-border text-center">
-              <p className="text-sm text-muted-foreground">Rural-Ready: Our Local Brain ensures your machines stay smart even during internet blackouts common in industrial hubs across the country.<span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
+              <p className="text-sm text-muted-foreground">Rural-Ready: Our Local Brain ensures your machines stay smart even during internet blackouts common in industrial hubs like Surat, Tiruppur, and Ludhiana.<span className="text-foreground font-semibold">Rural-Ready:</span> Our Local Brain ensures your machines 
                 stay smart even during internet blackouts common in industrial hubs like Surat, Tiruppur, and Ludhiana.
               </p>
             </div>
